@@ -1,3 +1,5 @@
+'use client'
+
 import { memo, forwardRef } from "react";
 
 import {
@@ -27,15 +29,15 @@ const iconMap = {
 } as const;
 
 export interface IconProps {
-  id: string;
+  id?: string;
   icon: PhosphorIcon;
-  size: IconSize;
+  size?: IconSize;
   variant: IconVariant;
 }
 
 export const Icon = memo(
   forwardRef<SVGSVGElement, IconProps>((props, ref) => {
-    const { id, icon, variant = "regular", size } = props;
+    const { id, icon, variant = "regular", size = 'MD' } = props;
 
     const RootComponent = iconMap[icon];
 

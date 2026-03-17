@@ -1,9 +1,12 @@
-
+import { Icon } from "../components/Icon/Icon";
+import { Link } from "../components/Link/Link";
 
 export default function Home() {
   return (
     <div>
-      <h1>Main page</h1>
+      <Link href="https://www.w3schools.com/tags/tag_link.asp">
+        <Icon icon="profile" variant="regular" />
+      </Link>
     </div>
   );
 }
