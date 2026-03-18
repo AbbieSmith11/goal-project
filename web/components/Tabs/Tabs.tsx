@@ -1,104 +1,107 @@
-// // import { Icon, type IconVariant, type PhosphorIcon } from "../Icon/Icon";
-// // export type LinkIcon = PhosphorIcon;
+// import { Icon, type IconVariant, type PhosphorIcon } from "../Icon/Icon";
+// export type LinkIcon = PhosphorIcon;
 
-// import { TabsContext, useTabsContext } from "./TabsContext";
+"use client";
 
-// import React, { useState, memo } from "react";
 
-// // Tabs
+import { TabsContext, useTabsContext } from "./TabsContext";
 
-// export interface TabsProps {
-//   children?: React.ReactNode;
-//   defaultValue?: string;
-//   value?: string;
-//   onChange?: (value: string) => void;
-// }
+import React, { useState, memo } from "react";
 
-// export const Tabs: React.FC<TabsProps> = memo((props) => {
-//   const { children, defaultValue, value, onChange } = props;
+// Tabs
 
-//   const [internalValue, setInternalValue] = useState<string | undefined>(
-//     defaultValue
-//   );
+export interface TabsProps {
+  children?: React.ReactNode;
+  defaultValue?: string;
+  value?: string;
+  onChange?: (value: string) => void;
+}
 
-//   const isControlled = value !== undefined;
-//   const activeValue = isControlled ? value : internalValue;
+export const Tabs: React.FC<TabsProps> = memo((props) => {
+  const { children, defaultValue, value, onChange } = props;
 
-//   const setValue = (val: string) => {
-//     if (!isControlled) {
-//       setInternalValue(val);
-//     }
-//     onChange?.(val);
-//   };
+  const [internalValue, setInternalValue] = useState<string | undefined>(
+    defaultValue
+  );
 
-//   return (
-//     <TabsContext.Provider value={{ activeValue, setValue }}>
-//       {children}
-//     </TabsContext.Provider>
-//   );
-// });
+  const isControlled = value !== undefined;
+  const activeValue = isControlled ? value : internalValue;
 
-// Tabs.displayName = "Tabs";
+  const setValue = (val: string) => {
+    if (!isControlled) {
+      setInternalValue(val);
+    }
+    onChange?.(val);
+  };
 
-// // Tab List
+  return (
+    <TabsContext.Provider value={{ activeValue, setValue }}>
+      {children}
+    </TabsContext.Provider>
+  );
+});
 
-// export interface TabListProps {
-//   children?: React.ReactNode;
-// }
+Tabs.displayName = "Tabs";
 
-// export const TabList: React.FC<TabListProps> = memo(({ children }) => {
-//   return <div role="tablist">{children}</div>;
-// });
+// Tab List
 
-// TabList.displayName = "TabList";
+export interface TabListProps {
+  children?: React.ReactNode;
+}
 
-// // Tab
+export const TabList: React.FC<TabListProps> = memo(({ children }) => {
+  return <div role="tablist">{children}</div>;
+});
 
-// export interface TabProps {
-//   value: string;
-//   children?: React.ReactNode;
-// }
+TabList.displayName = "TabList";
 
-// export const Tab: React.FC<TabProps> = memo(({ value, children }) => {
-//   const { activeValue, setValue } = useTabsContext();
+// Tab
 
-//   const isActive = activeValue === value;
+export interface TabProps {
+  value: string;
+  children?: React.ReactNode;
+}
 
-//   return (
-//     <button
-//       role="tab"
-//       id={`tab-${value}`}
-//       aria-selected={isActive}
-//       aria-controls={`panel-${value}`}
-//       tabIndex={isActive ? 0 : -1}
-//       onClick={() => setValue(value)}
-//     >
-//       {children}
-//     </button>
-//   );
-// });
+export const Tab: React.FC<TabProps> = memo(({ value, children }) => {
+  const { activeValue, setValue } = useTabsContext();
 
-// Tab.displayName = "Tab";
+  const isActive = activeValue === value;
 
-// // Tab Panel
+  return (
+    <button
+      role="tab"
+      id={`tab-${value}`}
+      aria-selected={isActive}
+      aria-controls={`panel-${value}`}
+      tabIndex={isActive ? 0 : -1}
+      onClick={() => setValue(value)}
+    >
+      {children}
+    </button>
+  );
+});
 
-// export interface TabPanelProps {
-//   value: string;
-//   children: React.ReactNode;
-// }
+Tab.displayName = "Tab";
 
-// export const TabPanel: React.FC<TabPanelProps> = memo(({ value, children }) => {
-//   const { activeValue } = useTabsContext();
+// Tab Panel
 
-//   const isActive = activeValue === value;
+export interface TabPanelProps {
+  value: string;
+  children: React.ReactNode;
+}
 
-//   if (!isActive) return null;
+export const TabPanel: React.FC<TabPanelProps> = memo(({ value, children }) => {
+  const { activeValue } = useTabsContext();
 
-//   return (
-//     <div role="tabpanel" id={`panel-${value}`} aria-labelledby={`tab-${value}`}>
-//       {children}
-//     </div>
-//   );
-// });
+  const isActive = activeValue === value;
 
-// TabPanel.displayName = "TabPanel";
+  if (!isActive) return null;
+
+  return (
+    <div role="tabpanel" id={`panel-${value}`} aria-labelledby={`tab-${value}`}>
+      {children}
+    </div>
+  );
+});
+
+TabPanel.displayName = "TabPanel";

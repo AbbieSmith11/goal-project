@@ -4,6 +4,8 @@ import { Icon } from "../components/Icon/Icon";
 import { Link } from "../components/Link/Link";
 import { Navbar } from "../components/Navbar/Navbar";
 
+import { Tabs, Tab, TabPanel, TabList } from '../components/Tabs/Tabs'
+
 export default function Home() {
   return (
     <div>
@@ -19,7 +21,7 @@ export default function Home() {
         </Link>
       </Navbar>
 
-      {/* <Tabs defaultValue="All">
+      <Tabs defaultValue="All">
         <TabList>
           <Tab value="All">All</Tab>
           <Tab value="Work">Work</Tab>
@@ -37,7 +39,7 @@ export default function Home() {
         <TabPanel value="Personal">
           <p>Personal</p>
         </TabPanel>
-      </Tabs> */}
+      </Tabs>
     </div>
   );
 };
