@@ -1,4 +1,4 @@
-@use "../sass/variables" as *;
+ @use "../sass/variables" as *;
 
 :root {
   --background: #ffffff;
@@ -14,8 +14,8 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: $black;
-    --foreground: $white;
+    --background: #07050d;
+    --foreground: #fefeff;
   }
 }
 
@@ -23,4 +23,4 @@ body {
   background: $background;
   color: $black;
   font-family: $basic-font;
-}
+} 
