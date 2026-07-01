@@ -1,0 +1,26 @@
+@use "../../sass/variables" as *;
+
+.link {
+  &:hover {
+    cursor: pointer;
+  }
+
+  &.link-active {
+    background-color: $black;
+    color: $white;
+  }
+
+  &:focus-visible {
+    outline: 1px solid $black;
+    outline-offset: 2px;
+  }
+
+  &:focus {
+    outline: 1px solid $black;
+    outline-offset: 2px;
+
+    &.link-active {
+      outline: 2px solid $white;
+    }
+  }
+}

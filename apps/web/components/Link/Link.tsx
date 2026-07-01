@@ -4,6 +4,8 @@ import React, { forwardRef, ForwardedRef, memo } from "react";
 
 import { Icon, type IconVariant, type PhosphorIcon } from "../Icon/Icon";
 
+import styles from './Link.module.scss'
+
 export type LinkTarget = "_blank" | "_self";
 export type LinkSize = "SM" | "MD" | "LG";
 export type LinkIcon = PhosphorIcon;
@@ -48,7 +50,7 @@ export const Link = memo(
         : "undefined";
 
     return (
-      <a id={id} href={href} ref={ref} target={target} rel={rel || relValue}>
+      <a id={id} href={href} ref={ref} target={target} rel={rel || relValue} className={styles['link']}>
         {iconStart && (
           <Icon icon={iconStart} size={size} variant={iconWeight}></Icon>
         )}
