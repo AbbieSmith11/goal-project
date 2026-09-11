@@ -1,0 +1,36 @@
+{
+    "theme": {
+      "light": {
+        "component": {
+          "navbar": {
+            "color": {
+              "background": {
+                "$value": "{theme.light.background.primary}",
+                "$type": "color"
+              },
+              "text": {
+                "$value": "{theme.light.text.primary}",
+                "$type": "color"
+              }
+            }
+          }
+        }
+      },
+      "dark": {
+        "component": {
+          "navbar": {
+            "color": {
+              "background": {
+                "$value": "{theme.dark.background.primary}",
+                "$type": "color"
+              },
+              "text": {
+                "$value": "{theme.dark.text.primary}",
+                "$type": "color"
+              }
+            }
+          }
+        }
+      }
+    }
+  }

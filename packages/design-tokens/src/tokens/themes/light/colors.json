@@ -1,0 +1,18 @@
+{
+  "theme": {
+    "light": {
+      "background": {
+        "primary": {
+          "$value": "{color.black}",
+          "$type": "color"
+        }
+      },
+      "text": {
+        "primary": {
+          "$value": "{color.white}",
+          "$type": "color"
+        }
+      }
+    }
+  }
+}

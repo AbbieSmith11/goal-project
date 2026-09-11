@@ -1,0 +1,16 @@
+{
+    "font": {
+        "styles": {
+            "family": {
+                "pixel": {
+                    "$value": "\"Pixelify Sans\", sans-serif",
+                    "$type": "fontFamily"
+                },
+                "basic": {
+                    "$value": "\"Open Sans\", sans-serif",
+                    "$type": "fontFamily"
+                }
+            }
+        }
+    }
+}

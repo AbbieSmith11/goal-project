@@ -1,0 +1,49 @@
+{
+  "color": {
+    "black": {
+      "$value": "#07050d",
+      "$type": "color"
+    },
+    "white": {
+      "$value": "#fefeff",
+      "$type": "color"
+    },
+    "background": {
+      "$value": "#fbf8f5",
+      "$type": "color"
+    },
+    "backgroundDark": {
+      "$value": "#f1ece7",
+      "Stype": "color"
+    },
+    "pink": { "$value": "#ecc8cb", "$type": "color" },
+    "pinkDark": {
+      "$value": "#e39ba2",
+      "$type": "color"
+    },
+    "purple": {
+      "$value": "#d4d2fa",
+      "$type": "color"
+    },
+    "purpleDark": {
+      "$value": "#aeacca",
+      "$type": "color"
+    },
+    "orange": {
+      "$value": "#f6e1c4",
+      "$type": "color"
+    },
+    "orangeDark": {
+      "$value": "#f1b680",
+      "$type": "color"
+    },
+    "green": {
+      "$value": "#c9efdc",
+      "$type": "color"
+    },
+    "greenDark": {
+      "$value": "#93bda8",
+      "$type": "color"
+    }
+  }
+}

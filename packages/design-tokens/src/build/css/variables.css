@@ -1,0 +1,40 @@
+/* Base tokens */
+:root {
+  --color-black: #07050d;
+  --color-white: #fefeff;
+  --color-background: #fbf8f5;
+  --color-background-dark: #f1ece7;
+  --color-pink: #ecc8cb;
+  --color-pink-dark: #e39ba2;
+  --color-purple: #d4d2fa;
+  --color-purple-dark: #aeacca;
+  --color-orange: #f6e1c4;
+  --color-orange-dark: #f1b680;
+  --color-green: #c9efdc;
+  --color-green-dark: #93bda8;
+  --font-styles-family-pixel: "Pixelify Sans", sans-serif;
+  --font-styles-family-basic: "Open Sans", sans-serif;
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+}
+
+/* Light theme tokens */
+[data-theme="light"] {
+  --theme-light-background-primary: var(--color-black);
+  --theme-light-text-primary: var(--color-white);
+
+  --component-navbar-color-background: var(--theme-light-background-primary);
+  --component-navbar-color-text: var(--theme-light-text-primary);
+}
+
+/* Dark theme tokens */
+[data-theme="dark"] {
+  --theme-dark-background-primary: var(--color-white);
+  --theme-dark-text-primary: var(--color-black);
+
+  --component-navbar-color-background: var(--theme-dark-background-primary);
+  --component-navbar-color-text: var(--theme-dark-text-primary);
+}
