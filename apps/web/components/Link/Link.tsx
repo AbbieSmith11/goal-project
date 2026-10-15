@@ -1,6 +1,6 @@
 "use client";
 
-import React, { forwardRef, memo, useState } from "react";
+import React, { forwardRef, memo } from "react";
 import clsx from "clsx";
 import { Icon, type IconVariant, type PhosphorIcon } from "../Icon/Icon";
 
@@ -38,8 +38,8 @@ export const Link = memo(
       isActive = false,
     } = props;
 
-    const [isHovered, setIsHovered] = useState(false);
-    const [isFocused, setIsFocused] = useState(false);
+    // const [isHovered, setIsHovered] = useState(false);
+    // const [isFocused, setIsFocused] = useState(false);
 
     const isExternalLink =
       href.startsWith("http://") ||
@@ -54,18 +54,18 @@ export const Link = memo(
           ? "noopener"
           : undefined);
 
-    const renderContent = () => {
-      const weight: IconVariant =
-        isActive || isHovered || isFocused ? "fill" : iconWeight;
+    // const renderContent = () => {
+    //   // const weight: IconVariant =
+    //   //   isActive || isHovered || isFocused ? "fill" : iconWeight;
 
-      return (
-        <>
-          {iconStart && <Icon icon={iconStart} size={size} variant={weight} />}
-          {children}
-          {iconEnd && <Icon icon={iconEnd} size={size} variant={weight} />}
-        </>
-      );
-    };
+    //   return (
+    //     <>
+    //       {iconStart && <Icon icon={iconStart} size={size} variant={weight} />}
+    //       {children}
+    //       {iconEnd && <Icon icon={iconEnd} size={size} variant={weight} />}
+    //     </>
+    //   );
+    // };
 
     return (
       <a
@@ -75,12 +75,16 @@ export const Link = memo(
         target={target}
         rel={relValue}
         className={clsx(styles.link, isActive && styles["link-active"])}
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-        onFocus={() => setIsFocused(true)}
-        onBlur={() => setIsFocused(false)}
+        // onMouseEnter={() => setIsHovered(true)}
+        // onMouseLeave={() => setIsHovered(false)}
+        // onFocus={() => setIsFocused(true)}
+        // onBlur={() => setIsFocused(false)}
       >
-        {renderContent()}
+        {iconStart && (
+          <Icon icon={iconStart} size={size} variant={iconWeight} />
+        )}
+        {children}
+        {iconEnd && <Icon icon={iconEnd} size={size} variant={iconWeight} />}
       </a>
     );
   })

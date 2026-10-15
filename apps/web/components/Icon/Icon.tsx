@@ -36,6 +36,8 @@ export const Icon = memo(
   forwardRef<SVGSVGElement, IconProps>((props, ref) => {
     const { id, icon = "profile", variant = "regular", size = "MD" } = props;
 
+    const isFill = variant === "fill" ? true : false;
+
     const [isHovered, setIsHovered] = useState(false);
 
     const RootComponent = iconMap[icon];
@@ -46,7 +48,11 @@ export const Icon = memo(
       LG: 48,
     };
 
-    const resolvedVariant: IconVariant = isHovered ? "fill" : variant;
+    const resolvedVariant: IconVariant = isHovered
+      ? isFill
+        ? "regular"
+        : "fill"
+      : variant;
 
     return (
       <div

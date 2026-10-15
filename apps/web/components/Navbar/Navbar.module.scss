@@ -21,7 +21,9 @@
   &.navbar-vertical {
     padding: 1.5rem 1rem;
     inset: 2rem auto 2rem 2rem;
-    width: 7vw;
+    display: flex;
     flex-direction: column;
+    gap: 1.5rem;
+
   }
 }

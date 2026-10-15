@@ -9,7 +9,7 @@ import { Tabs, Tab, TabPanel, TabList } from '../components/Tabs/Tabs'
 export default function Home() {
   return (
     <div>
-      <Navbar>
+      <Navbar orientation="vertical" >
         <Link href="https://www.w3schools.com/tags/tag_link.asp">
           <Icon icon="profile" variant="regular" />
         </Link>
