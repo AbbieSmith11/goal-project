@@ -1,6 +1,12 @@
 {
   "name": "design-tokens",
   "version": "1.0.0",
+  "type": "module",
+  "exports": {
+    "./css": "./src/build/css/variables.css",
+    "./scss": "./src/build/scss/_variables.scss",
+    "./js": "./src/build/js/tokens.js"
+  },
   "description": "",
   "main": "index.js",
   "scripts": {

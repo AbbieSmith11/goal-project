@@ -3,15 +3,19 @@
     "dark": {
       "background": {
         "primary": {
-          "$value": "{color.white}",
+          "$value": "{color.black}",
           "$type": "color"
         }
       },
       "text": {
         "primary": {
-          "$value": "{color.black}",
+          "$value": "{color.white}",
           "$type": "color"
         }
+      },
+      "active": {
+        "$value": "{color.black}",
+        "$type": "color"
       }
     }
   }

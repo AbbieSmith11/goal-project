@@ -17,11 +17,11 @@ export default function Home() {
           <Icon icon="profile" variant="regular" />
         </Link>
         <Link href="https://www.w3schools.com/tags/tag_link.asp">
-          <Icon icon="profile" variant="regular" />
+          <Icon icon="profile" variant="fill" />
         </Link>
       </Navbar>
 
-      <Tabs defaultValue="All">
+      {/* <Tabs defaultValue="All">
         <TabList>
           <Tab value="All">All</Tab>
           <Tab value="Work">Work</Tab>
@@ -39,7 +39,7 @@ export default function Home() {
         <TabPanel value="Personal">
           <p>Personal</p>
         </TabPanel>
-      </Tabs>
+      </Tabs> */}
     </div>
   );
 };

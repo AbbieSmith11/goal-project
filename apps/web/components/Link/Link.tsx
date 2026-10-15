@@ -1,31 +1,30 @@
 "use client";
 
-import React, { forwardRef, ForwardedRef, memo } from "react";
-
+import React, { forwardRef, memo, useState } from "react";
+import clsx from "clsx";
 import { Icon, type IconVariant, type PhosphorIcon } from "../Icon/Icon";
 
-import styles from './Link.module.scss'
+import styles from "./Link.module.scss";
 
 export type LinkTarget = "_blank" | "_self";
 export type LinkSize = "SM" | "MD" | "LG";
 export type LinkIcon = PhosphorIcon;
 
-interface LinkProps {
+export interface LinkProps {
   id?: string;
   children: React.ReactNode;
   href: string;
-  /** Wether the link should open in a new tab - default is _self */
   target?: LinkTarget;
   size?: LinkSize;
   iconStart?: LinkIcon;
   iconEnd?: LinkIcon;
   iconWeight?: IconVariant;
-/** Stands for relationship */
   rel?: string;
+  isActive?: boolean;
 }
 
 export const Link = memo(
-  forwardRef((props: LinkProps, ref: ForwardedRef<HTMLAnchorElement>) => {
+  forwardRef<HTMLAnchorElement, LinkProps>((props, ref) => {
     const {
       id,
       children,
@@ -36,28 +35,52 @@ export const Link = memo(
       iconEnd,
       iconWeight = "regular",
       rel,
+      isActive = false,
     } = props;
 
-    const isExternalLink =
-      href && (href.startsWith("http") || href.startsWith("//"));
+    const [isHovered, setIsHovered] = useState(false);
+    const [isFocused, setIsFocused] = useState(false);
 
-      // if opening link on new page then remove referrer informaton so the site won't know where the user came from ('noreferrer'). And stop the new tab from being able to control the origional page ('noopener')
+    const isExternalLink =
+      href.startsWith("http://") ||
+      href.startsWith("https://") ||
+      href.startsWith("//");
+
     const relValue =
-      target === "_blank"
+      rel ??
+      (target === "_blank"
         ? "noopener noreferrer"
         : isExternalLink
-        ? "noopener"
-        : "undefined";
+          ? "noopener"
+          : undefined);
+
+    const renderContent = () => {
+      const weight: IconVariant =
+        isActive || isHovered || isFocused ? "fill" : iconWeight;
+
+      return (
+        <>
+          {iconStart && <Icon icon={iconStart} size={size} variant={weight} />}
+          {children}
+          {iconEnd && <Icon icon={iconEnd} size={size} variant={weight} />}
+        </>
+      );
+    };
 
     return (
-      <a id={id} href={href} ref={ref} target={target} rel={rel || relValue} className={styles['link']}>
-        {iconStart && (
-          <Icon icon={iconStart} size={size} variant={iconWeight}></Icon>
-        )}
-        {children}
-        {iconEnd && (
-          <Icon icon={iconEnd} size={size} variant={iconWeight}></Icon>
-        )}
+      <a
+        id={id}
+        href={href}
+        ref={ref}
+        target={target}
+        rel={relValue}
+        className={clsx(styles.link, isActive && styles["link-active"])}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+        onFocus={() => setIsFocused(true)}
+        onBlur={() => setIsFocused(false)}
+      >
+        {renderContent()}
       </a>
     );
   })

@@ -1,6 +1,7 @@
-'use client'
+"use client";
 
-import { memo, forwardRef } from "react";
+import styles from "./Icon.module.scss";
+import { memo, forwardRef, useState } from "react";
 
 import {
   UserIcon,
@@ -14,11 +15,7 @@ export type IconSize = "SM" | "MD" | "LG";
 export type IconVariant = "regular" | "fill";
 
 export type PhosphorIcon =
-  | "profile"
-  | "dashboard"
-  | "goals"
-  | "achievements"
-  | "settings";
+  "profile" | "dashboard" | "goals" | "achievements" | "settings";
 
 const iconMap = {
   profile: UserIcon,
@@ -32,24 +29,40 @@ export interface IconProps {
   id?: string;
   icon: PhosphorIcon;
   size?: IconSize;
-  variant: IconVariant;
+  variant?: IconVariant;
 }
 
 export const Icon = memo(
   forwardRef<SVGSVGElement, IconProps>((props, ref) => {
-    const { id, icon, variant = "regular", size = 'MD' } = props;
+    const { id, icon = "profile", variant = "regular", size = "MD" } = props;
+
+    const [isHovered, setIsHovered] = useState(false);
 
     const RootComponent = iconMap[icon];
 
     const sizeMap = {
       SM: 24,
       MD: 32,
-      LG: 48
-    }
+      LG: 48,
+    };
 
-    const iconWeight = variant;
+    const resolvedVariant: IconVariant = isHovered ? "fill" : variant;
 
-    return <RootComponent ref={ref} id={id} weight={iconWeight} size={sizeMap[size]}/>;
+    return (
+      <div
+        aria-hidden="true"
+        className={styles["icon-container"]}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
+        <RootComponent
+          ref={ref}
+          id={id}
+          weight={resolvedVariant}
+          size={sizeMap[size]}
+        />
+      </div>
+    );
   })
 );
 

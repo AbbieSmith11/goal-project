@@ -3,12 +3,16 @@
     "light": {
       "background": {
         "primary": {
-          "$value": "{color.black}",
+          "$value": "{color.white}",
           "$type": "color"
         }
       },
       "text": {
         "primary": {
+          "$value": "{color.black}",
+          "$type": "color"
+        },
+        "active": {
           "$value": "{color.white}",
           "$type": "color"
         }

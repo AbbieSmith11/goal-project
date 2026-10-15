@@ -14,27 +14,56 @@
   --color-green-dark: #93bda8;
   --font-styles-family-pixel: "Pixelify Sans", sans-serif;
   --font-styles-family-basic: "Open Sans", sans-serif;
-  --spacing-xs: 4px;
-  --spacing-sm: 8px;
-  --spacing-md: 16px;
-  --spacing-lg: 24px;
-  --spacing-xl: 32px;
+  --spacing-xxs: 1px;
+  --spacing-xs: 2px;
+  --spacing-sm: 4px;
+  --spacing-md: 8px;
+  --spacing-lg: 12px;
+  --spacing-xl: 16px;
+  --spacing-xxl: 24px;
+  --spacing-xxxl: 32px;
 }
 
 /* Light theme tokens */
 [data-theme="light"] {
-  --theme-light-background-primary: var(--color-black);
-  --theme-light-text-primary: var(--color-white);
+  --theme-light-dark-component-link-color-background: var(--theme-dark-background-primary);
+  --theme-light-dark-component-link-color-text: var(--theme-dark-text-primary);
+  --theme-light-dark-component-link-spacing-padding: var(--spacing-lg);
+  --theme-light-background-primary: var(--color-white);
+  --theme-light-text-primary: var(--color-black);
+  --theme-light-text-active: var(--color-white);
 
-  --component-navbar-color-background: var(--theme-light-background-primary);
-  --component-navbar-color-text: var(--theme-light-text-primary);
+  /* icon component */
+    --component-icon-color-background: var(--theme-light-background-primary);
+    --component-icon-color-text: var(--theme-light-text-primary);
+    --component-icon-spacing-padding: var(--spacing-lg);
+
+  /* link component */
+    --component-link-color-background: var(--theme-light-background-primary);
+    --component-link-color-text: var(--theme-light-text-primary);
+    --component-link-color-activeText: var(--theme-light-text-primary);
+    --component-link-spacing-outline: var(--spacing-xxs);
+    --component-link-spacing-outlineOffset: var(--spacing-xs);
+
+  /* navbar component */
+    --component-navbar-color-background: var(--theme-light-background-primary);
+    --component-navbar-color-text: var(--theme-light-text-primary);
 }
 
 /* Dark theme tokens */
 [data-theme="dark"] {
-  --theme-dark-background-primary: var(--color-white);
-  --theme-dark-text-primary: var(--color-black);
+  --theme-dark-background-primary: var(--color-black);
+  --theme-dark-text-primary: var(--color-white);
+  --theme-dark-active: var(--color-black);
 
-  --component-navbar-color-background: var(--theme-dark-background-primary);
-  --component-navbar-color-text: var(--theme-dark-text-primary);
+  /* link component */
+    --component-link-color-background: var(--theme-dark-background-primary);
+    --component-link-color-text: var(--theme-dark-text-primary);
+    --component-link-color-activeText: var(--theme-dark-text-primary);
+    --component-link-spacing-outline: var(--spacing-xxs);
+    --component-link-spacing-outlineOffset: var(--spacing-xs);
+
+  /* navbar component */
+    --component-navbar-color-background: var(--theme-dark-background-primary);
+    --component-navbar-color-text: var(--theme-dark-text-primary);
 }

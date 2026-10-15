@@ -40,66 +40,67 @@ export default {
           usesDtcg: true,
         });
 
-        // Base tokens
         const baseTokens = dictionary.allTokens.filter(
           (token) => token.path[0] !== "theme" && token.path[0] !== "component"
         );
 
-        // Light theme tokens
-        const lightTokens = dictionary.allTokens.filter(
-          (token) =>
-            token.path[0] === "theme" &&
-            token.path[1] === "light" &&
-            token.path[2] !== "component"
-        );
+        const getThemeTokens = (theme) =>
+          dictionary.allTokens.filter(
+            (token) =>
+              token.path[0] === "theme" &&
+              token.path[1] === theme &&
+              token.path[2] !== "component"
+          );
 
-        // Dark theme tokens
-        const darkTokens = dictionary.allTokens.filter(
-          (token) =>
-            token.path[0] === "theme" &&
-            token.path[1] === "dark" &&
-            token.path[2] !== "component"
-        );
+        const getComponentGroups = (theme) => {
+          const components = dictionary.allTokens.filter(
+            (token) =>
+              token.path[0] === "theme" &&
+              token.path[1] === theme &&
+              token.path[2] === "component"
+          );
 
-        // Light component tokens
-        const lightComponentTokens = dictionary.allTokens.filter(
-          (token) =>
-            token.path[0] === "theme" &&
-            token.path[1] === "light" &&
-            token.path[2] === "component"
-        );
+          const groups = new Map();
 
-        // Dark component tokens
-        const darkComponentTokens = dictionary.allTokens.filter(
-          (token) =>
-            token.path[0] === "theme" &&
-            token.path[1] === "dark" &&
-            token.path[2] === "component"
-        );
+          for (const token of components) {
+            const componentName = token.path[3];
 
-        const baseVariables = baseTokens.map(formatProperty).join("\n");
+            if (!componentName) continue;
 
-        const lightVariables = lightTokens.map(formatProperty).join("\n");
+            if (!groups.has(componentName)) {
+              groups.set(componentName, []);
+            }
 
-        const darkVariables = darkTokens.map(formatProperty).join("\n");
+            groups.get(componentName).push(token);
+          }
 
-        const lightComponentVariables = lightComponentTokens
-          .map((token) =>
-            formatProperty({
-              ...token,
-              name: `component-${token.path.slice(3).join("-")}`,
+          return [...groups.entries()]
+            .map(([name, tokens]) => {
+              const variables = tokens
+                .map((token) =>
+                  formatProperty({
+                    ...token,
+                    name: `component-${token.path.slice(3).join("-")}`,
+                  })
+                )
+                .join("\n");
+
+              return `  /* ${name} component */\n${variables
+                .split("\n")
+                .map((line) => `  ${line}`)
+                .join("\n")}`;
             })
-          )
-          .join("\n");
+            .join("\n\n");
+        };
 
-        const darkComponentVariables = darkComponentTokens
-          .map((token) =>
-            formatProperty({
-              ...token,
-              name: `component-${token.path.slice(3).join("-")}`,
-            })
-          )
-          .join("\n");
+        const formatTokens = (tokens) => tokens.map(formatProperty).join("\n");
+
+        const baseVariables = formatTokens(baseTokens);
+        const lightVariables = formatTokens(getThemeTokens("light"));
+        const darkVariables = formatTokens(getThemeTokens("dark"));
+
+        const lightComponents = getComponentGroups("light");
+        const darkComponents = getComponentGroups("dark");
 
         return `/* Base tokens */
 :root {
@@ -110,14 +111,14 @@ ${baseVariables}
 [data-theme="light"] {
 ${lightVariables}
 
-${lightComponentVariables}
+${lightComponents}
 }
 
 /* Dark theme tokens */
 [data-theme="dark"] {
 ${darkVariables}
 
-${darkComponentVariables}
+${darkComponents}
 }
 `;
       },

@@ -1,0 +1,48 @@
+{
+  "theme": {
+    "light": {
+      "component": {
+        "icon": {
+          "color": {
+            "background": {
+              "$value": "{theme.light.background.primary}",
+              "$type": "color"
+            },
+            "text": {
+              "$value": "{theme.light.text.primary}",
+              "$type": "color"
+            }
+          },
+          "spacing": {
+            "padding": {
+              "$value": "{spacing.lg}",
+              "$type": "dimension"
+            }
+          }
+        }
+      },
+      "dark": {
+        "component": {
+          "link": {
+            "color": {
+              "background": {
+                "$value": "{theme.dark.background.primary}",
+                "$type": "color"
+              },
+              "text": {
+                "$value": "{theme.dark.text.primary}",
+                "$type": "color"
+              }
+            },
+            "spacing": {
+              "padding": {
+                "$value": "{spacing.lg}",
+                "$type": "dimension"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

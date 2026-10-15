@@ -6,18 +6,20 @@
   }
 
   &.link-active {
-    background-color: $black;
-    color: $white;
+    background-color: var(--component-link-color-background);
+    // outline: var(--component-link-spacing-outlineOffset) solid $white;
+    color: var(--theme-light-text-active);
   }
 
   &:focus-visible {
-    outline: 1px solid $black;
-    outline-offset: 2px;
+    outline: var(--component-link-spacing-outline) solid $black;
+    outline-offset: var(--component-link-spacing-outlineOffset);
   }
 
   &:focus {
-    outline: 1px solid $black;
-    outline-offset: 2px;
+    outline: var(--component-link-spacing-outline) solid
+      var(--component-link-color-background);
+    outline-offset: var(--spacing-xs);
 
     &.link-active {
       outline: 2px solid $white;
